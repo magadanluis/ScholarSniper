@@ -42,7 +42,8 @@ def obtener_pdf_scihub(doi):
             if src.startswith("//"):
                 src = "https:" + src
             return src
-    return None
+    else:
+        return "vacio"
     
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     consulta = update.message.text.strip()
