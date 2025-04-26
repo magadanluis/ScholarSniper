@@ -55,17 +55,23 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("No pude encontrar un DOI para tu consulta. Intenta ser más específico.")
         return
 
-    pdf_url = obtener_pdf_desde_unpaywall(doi)
+    #pdf_url = obtener_pdf_desde_unpaywall(doi)
 
+    #if pdf_url:
+    #    await update.message.reply_text(f"Aquí tienes el PDF Open Access:\n{pdf_url}")
+    #else:
+    #    await update.message.reply_text("No hay una versión gratuita disponible para este artículo, probemos con SciHub")
+    #    pdf_url = obtener_pdf_scihub(doi)
+    #    if pdf_url:
+    #        await update.message.reply_text(f"Aquí tienes el PDF Open Access:\n{pdf_url}")
+    #    else:
+    #        await update.message.reply_text(f"No hay una versión en scihub de este articulo:\n{doi}")
+
+    pdf_url = obtener_pdf_scihub(doi)
     if pdf_url:
         await update.message.reply_text(f"Aquí tienes el PDF Open Access:\n{pdf_url}")
     else:
-        await update.message.reply_text("No hay una versión gratuita disponible para este artículo, probemos con SciHub")
-        pdf_url = obtener_pdf_scihub(doi)
-        if pdf_url:
-            await update.message.reply_text(f"Aquí tienes el PDF Open Access:\n{pdf_url}")
-        else:
-            await update.message.reply_text(f"No hay una versión en scihub de este articulo:\n{doi}")
+        await update.message.reply_text(f"No hay una versión en scihub de este articulo:\n{doi}")
 
 def main():
     app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
