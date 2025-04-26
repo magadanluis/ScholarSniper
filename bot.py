@@ -31,6 +31,19 @@ def obtener_pdf_desde_unpaywall(doi):
             return oa_location['url_for_pdf']
     return None
 
+def obtener_pdf_scihub(doi):
+    url = f"https://sci-hub.se/{doi}"
+    r = requests.get(url)
+    if r.status_code == 200:
+        soup = BeautifulSoup(r.text, "html.parser")
+        iframe = soup.find("iframe")
+        if iframe and iframe.get("src"):
+            src = iframe["src"]
+            if src.startswith("//"):
+                src = "https:" + src
+            return src
+    return None
+    
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     consulta = update.message.text.strip()
     doi = consulta if es_doi(consulta) else buscar_doi_por_titulo(consulta)
@@ -44,7 +57,13 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if pdf_url:
         await update.message.reply_text(f"Aquí tienes el PDF Open Access:\n{pdf_url}")
     else:
-        await update.message.reply_text("No hay una versión gratuita disponible para este artículo.")
+        await update.message.reply_text("No hay una versión gratuita disponible para este artículo, probemos con SciHub")
+
+    pdf_url = obtener_pdf_scihub(doi)
+    if pdf_url:
+        await update.message.reply_text(f"Aquí tienes el PDF Open Access:\n{pdf_url}")
+    else:
+        await update.message.reply_text("No hay una versión gratuita disponible para este artículo, probemos con SciHub")
 
 def main():
     app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
