@@ -1,4 +1,6 @@
- import os
+import os
+from bs4 import BeautifulSoup
+import requests
 import requests
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
