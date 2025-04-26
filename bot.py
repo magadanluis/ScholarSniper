@@ -1,4 +1,4 @@
-import os
+ import os
 import requests
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
@@ -64,7 +64,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if pdf_url:
         await update.message.reply_text(f"Aquí tienes el PDF Open Access:\n{pdf_url}")
     else:
-        await update.message.reply_text("No hay una versión gratuita disponible para este artículo, probemos con SciHub")
+        await update.message.reply_text("No hay una versión en scihub de este articulo")
 
 def main():
     app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
