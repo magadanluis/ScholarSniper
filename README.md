@@ -1,17 +1,23 @@
-# Telegram OA Bot
+# Bot de Telegram para Descargar Artículos Científicos
 
-Bot de Telegram que encuentra versiones Open Access de artículos científicos a partir de su título o DOI. Usa las APIs de CrossRef y Unpaywall.
+Este bot acepta un DOI o título de un artículo y busca versiones en PDF en fuentes open access como Unpaywall, CORE y OpenAlex.
 
-## Variables de entorno
+## Despliegue en Railway
 
-- `TELEGRAM_TOKEN`: 
-- `UNPAYWALL_EMAIL`: 
+1. Sube este repositorio a Railway.
+2. Añade las siguientes variables de entorno:
+   - `TOKEN`: tu token de Telegram
+   - `EMAIL_UNPAYWALL`: tu email registrado en Unpaywall
+3. Railway detectará el `Procfile` y lanzará el bot como un worker automáticamente.
 
-## Despliegue
+## Logging
 
-Puedes desplegarlo en Railway, Heroku, Render, etc.
+Los logs del bot están habilitados y pueden verse en la consola de Railway.
 
-```bash
-pip install -r requirements.txt
-python bot.py
-```
+## Requisitos
+
+- Python 3.10+
+- `python-telegram-bot`
+- `requests`
+
+¡Listo!
