@@ -5,7 +5,7 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
 # CONFIGURACIÓN desde variables de entorno
-TOKEN = os.getenv('TOKEN')
+TOKEN = os.getenv('TOKEN_TELEGRAM')
 EMAIL_UNPAYWALL = os.getenv('EMAIL_UNPAYWALL')
 
 # LOGGING
