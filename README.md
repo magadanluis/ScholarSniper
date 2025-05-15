@@ -6,7 +6,7 @@ Este bot acepta un DOI o título de un artículo y busca versiones en PDF en fue
 
 1. Sube este repositorio a Railway.
 2. Añade las siguientes variables de entorno:
-   - `TOKEN`: tu token de Telegram
+   - `TOKEN_TELEGRAM`: tu token de Telegram
    - `EMAIL_UNPAYWALL`: tu email registrado en Unpaywall
 3. Railway detectará el `Procfile` y lanzará el bot como un worker automáticamente.
 
